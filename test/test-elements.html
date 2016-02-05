@@ -1,0 +1,26 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../style-reflection-behavior.html">
+
+<script>
+  Polymer({
+
+    is: 'test-element',
+
+    behaviors: [
+      Barvian.StyleReflectionBehavior
+    ],
+
+    properties: {
+      bg: {
+        reflectToStyle: true,
+        value: 'black'
+      },
+      fg: {
+        type: String,
+        reflectToStyle: true
+      },
+
+      otherProperty: String
+    }
+  });
+</script>

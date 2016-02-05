@@ -1,0 +1,35 @@
+{
+  "name": "style-reflection-behavior",
+  "version": "1.0.0",
+  "authors": [
+    "Maxwell Barvian <max@barvian.me>"
+  ],
+  "description": "Reflect Polymer properties to CSS style properties.",
+  "keywords": [
+    "polymer",
+    "web-component",
+    "web-components",
+    "styles",
+    "style-properties",
+    "style properties"
+  ],
+  "main": "style-reflection-behavior.html",
+  "license": "MIT",
+  "homepage": "https://github.com/barvian/style-reflection-behavior/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/barvian/style-reflection-behavior.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "iron-input": "PolymerElements/iron-input#^1.0.8"
+  }
+}

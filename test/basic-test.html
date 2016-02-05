@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="test-elements.html">
+  </head>
+  <body>
+
+    <test-fixture id="test-element-fixture">
+      <template>
+        <test-element></test-element>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('style-reflection-behavior', function() {
+
+        var testEl;
+
+        setup(function() {
+          testEl = fixture('test-element-fixture');
+        });
+
+        test("creates the observers array if one doesn't exist", function() {
+          expect(testEl.observers).to.exist;
+        });
+
+        test("assumes String type if unspecified", function() {
+          expect(testEl.properties.bg.type).to.equal(String);
+        });
+
+        test("creates style properties for default values", function() {
+          expect(testEl.customStyle['--test-element-bg']).to.equal('black');
+        });
+
+        test("updates style properties on value change", function() {
+          testEl.fg = 'green';
+          expect(testEl.customStyle['--test-element-fg']).to.equal('green');
+        });
+
+      });
+    </script>
+
+  </body>
+</html>

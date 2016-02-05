@@ -1,0 +1,42 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+  window.Barvian = window.Barvian || {};
+
+  /**
+   * Reflect Polymer properties to CSS style properties.
+   *
+   * @blurb Make the most of Polymer's 'neon-animated-pages' effortlessly
+   * @homepage https://github.com/barvian/style-reflection-behavior
+   * @demo demo/index.html
+   * @polymerBehavior
+   */
+  Barvian.StyleReflectionBehavior = {
+
+    beforeRegister: function() {
+      if (!this.observers) {
+        this.observers = [];
+      }
+
+      Object.keys(this.properties)
+        .filter(function(prop) { return this.properties[prop].reflectToStyle; }, this)
+        // For each style property...
+        .forEach(function(prop) {
+          var observerName = '_' + prop + 'Updated';
+
+          // ... set to String if unspecified
+          if (!this.properties[prop].type) {
+            this.properties[prop].type = String;
+          }
+
+          // ...add an observer function to the element
+          this[observerName] = function(newValue) {
+            this.customStyle['--' + this.is + '-' + prop] = newValue;
+            this.updateStyles();
+          };
+          this.observers.push(observerName + '(' + prop + ')');
+        }, this);
+    }
+
+  };
+</script>
