@@ -1,0 +1,78 @@
+<link rel="import" href="../../../polymer/polymer.html">
+<link rel="import" href="../../../iron-input/iron-input.html">
+<link rel="import" href="../../style-reflection-behavior.html">
+
+<dom-module id="x-box">
+
+  <style>
+    :host {
+      background-color: var(--x-box-bg);
+      height: 200px;
+      width: 300px;
+      padding: 1.5em;
+    }
+
+    pre {
+      display: block;
+      margin: 1em 0;
+    }
+  </style>
+
+  <template>
+
+    This box's background color is set via:
+    <pre><code>background-color: var(--x-box-bg);</code></pre>
+    Change the <code>bg</code> property of this box using the text area below
+    and watch the style update automatically.
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'x-box',
+      behaviors: [
+        Barvian.StyleReflectionBehavior
+      ],
+      properties: {
+        bg: {reflectToStyle: true}
+      }
+    });
+  </script>
+
+</dom-module>
+
+<dom-module id="x-app">
+
+  <style>
+    :host {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-flow: column nowrap;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    #box {
+      margin-bottom: 1.5em;
+    }
+  </style>
+
+  <template>
+
+    <x-box id="box" bg="[[boxBg]]"></x-box>
+    <div><code>x-box.bg</code> = <input placeholder="i.e. green, #000" is="iron-input" bind-value="{{boxBg}}"></div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'x-app'
+    });
+  </script>
+
+</dom-module>
+
